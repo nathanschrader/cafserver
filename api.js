@@ -1,10 +1,14 @@
 var express = require('express');
 var app = express();
+var meal = "Breakfast";
 
 function cafeteria(){
   this.votes = [],
   this.comments = [],
   this.getScore = function(){
+    if (this.votes.length == 0){
+      return 0;
+    }
     var score = 0;
     for(i = 0; i<this.votes.length; i++){
       score = score + this.votes[i];
@@ -20,6 +24,10 @@ function cafeteria(){
   },
   this.getComments = function(){
     return this.comments;
+  }, 
+  this.clear = function(){
+    this.votes = [];
+    this.comment = [];
   }
 
 };
@@ -51,6 +59,47 @@ app.get('/getSandwichlineScore', function (req, res) {
 
 app.get('/geWraplineScore', function (req, res) {
   res.end(wrapLine.getScore().toString());
+});
+
+app.get('/getMeal', function (req, res) {
+  var date = new Date();
+  var current_time = date.getHours();
+  if(current_time >= 7 && current_time <= 10){
+    if(meal != "Breakfast"){
+      mainLine.clear();
+      chefLine.clear();
+      glutenFree.clear();
+      sandwichLine.clear();
+      wrapLine.clear();
+    }
+    meal = "Breakfast";
+  }
+  else if(current_time >= 11 && current_time <= 16){
+    if(meal != "Lunch"){
+      mainLine.clear();
+      chefLine.clear();
+      glutenFree.clear();
+      sandwichLine.clear();
+      wrapLine.clear();
+    }
+    meal = "Lunch";
+  }
+  else if(current_time >= 17 && current_time <= 18){
+    if(meal != "Dinner"){
+      mainLine.clear();
+      chefLine.clear();
+      glutenFree.clear();
+      sandwichLine.clear();
+      wrapLine.clear();
+    }
+    meal = "Dinner";
+  }
+  else{
+    meal = "Closed"
+  }
+
+
+  res.end(meal.toString());
 });
 
 
@@ -136,3 +185,4 @@ app.post("/addWrapLineComment/:comment", function(req, res){
 app.listen(3000, function () {
   console.log('listening on port 3000!');
 });
+

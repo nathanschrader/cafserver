@@ -3,12 +3,15 @@
 ## API Endpints
 ##### API Runs on port 3000
 
+#### HTTP GET CURRENT MEAL
+- /getMeal
+
 #### HTTP GET SCORES
 - /getMainlineScore
 - /getCheflineScore
 - /getGlutenFreeScore
 - /getSandwichlineScore
-- /geWraplineScore
+- /getWraplineScore
 
 #### HTTP POST SCORE
 - /setMainLineScore/:vote

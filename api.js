@@ -2,7 +2,8 @@ var express = require('express');
 var app = express();
 var meal = "Breakfast";
 
-function cafeteria(){
+function cafeteria(lineName){
+  this.name = lineName,
   this.votes = [],
   this.comments = [],
   this.getScore = function(){
@@ -32,11 +33,11 @@ function cafeteria(){
 
 };
 
-var mainLine = new cafeteria();
-var chefLine = new cafeteria();
-var glutenFree = new cafeteria();
-var sandwichLine = new cafeteria();
-var wrapLine = new cafeteria();
+var mainLine = new cafeteria("mainLine");
+var chefLine = new cafeteria("chefLine");
+var glutenFree = new cafeteria("glutenFree");
+var sandwichLine = new cafeteria("sandwichLine");
+var wrapLine = new cafeteria("wrapLine");
 
 /* API URLS */
 
@@ -59,6 +60,17 @@ app.get('/getSandwichlineScore', function (req, res) {
 
 app.get('/geWraplineScore', function (req, res) {
   res.end(wrapLine.getScore().toString());
+});
+
+app.get('/getScores', function (req, res) {
+  var lines = [];
+  lines.push(wrapLine);
+  lines.push(sandwichLine);
+  lines.push(glutenFree);
+  lines.push(chefLine);
+  lines.push(mainLine);
+
+  res.end(JSON.stringify(lines));
 });
 
 app.get('/getMeal', function (req, res) {

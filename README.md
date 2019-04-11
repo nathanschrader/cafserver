@@ -8,7 +8,7 @@
 
 #### HTTP GET SCORES
 - /getMainlineScore
-- /getCheflineScore
+- /getCheflineScore 
 - /getGlutenFreeScore
 - /getSandwichlineScore
 - /getWraplineScore

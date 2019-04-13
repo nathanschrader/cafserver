@@ -6,12 +6,16 @@
 #### HTTP GET CURRENT MEAL
 - /getMeal
 
-#### HTTP GET SCORES
-- /getMainlineScore
-- /getCheflineScore 
-- /getGlutenFreeScore
-- /getSandwichlineScore
-- /getWraplineScore
+#### HTTP GET DATA
+- /getData  (returns an json array of data for all lines in this format)
+
+[
+    {"name":"mainLine","votes":[],"comments":[]},
+    {"name":"chefLine","votes":[],"comments":[]},
+    {"name":"glutenFree","votes":[],"comments":[]},
+    {"name":"sandwichLine","votes":[],"comments":[]},
+    {"name":"wrapLine","votes":[],"comments":[]}
+]
 
 #### HTTP POST SCORE
 - /setMainLineScore/:vote
@@ -19,14 +23,6 @@
 - /setGlutenFreeScore/:vote
 - /setSandwichLineScore/:vote
 - /setWrapLineScore/:vote
-
-#### HTTP GET COMMENTS
-
-- /getMainlineComments
-- /getCheflineComments
-- /getGlutenFreeComments
-- /getSandwichLineComments
-- /getWraplineComments
 
 #### HTTP POST COMMENT
 - /addMainLineComment/:comment

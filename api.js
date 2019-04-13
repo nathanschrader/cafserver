@@ -41,37 +41,21 @@ var wrapLine = new cafeteria("wrapLine");
 
 /* API URLS */
 
-/* GET SCORES */
-app.get('/getMainlineScore', function (req, res) {
-  res.end(mainLine.getScore().toString());
-});
+/* GET DATA */
 
-app.get('/getCheflineScore', function (req, res) {
-  res.end(chefLine.getScore().toString());
-});
-
-app.get('/getGlutenFreeScore', function (req, res) {
-  res.end(glutenFree.getScore().toString());
-});
-
-app.get('/getSandwichlineScore', function (req, res) {
-  res.end(sandwichLine.getScore().toString());
-});
-
-app.get('/geWraplineScore', function (req, res) {
-  res.end(wrapLine.getScore().toString());
-});
-
-app.get('/getScores', function (req, res) {
+app.get('/getData', function (req, res) {
   var lines = [];
-  lines.push(wrapLine);
-  lines.push(sandwichLine);
-  lines.push(glutenFree);
-  lines.push(chefLine);
   lines.push(mainLine);
+  lines.push(chefLine);
+  lines.push(glutenFree);
+  lines.push(sandwichLine);
+  lines.push(wrapLine);
 
   res.end(JSON.stringify(lines));
 });
+
+
+/* GET CURRENT MEAL */
 
 app.get('/getMeal', function (req, res) {
   var date = new Date();
@@ -141,26 +125,6 @@ app.post("/setWrapLineScore/:vote", function(req, res){
   res.sendStatus(200);
 });
 
-/* GET COMMENTS */
-app.get('/getMainlineComments', function (req, res) {
-  res.end(JSON.stringify(mainLine.getComments()));
-});
-
-app.get('/getCheflineComments', function (req, res) {
-  res.end(JSON.stringify(chefLine.getComments()));
-});
-
-app.get('/getGlutenFreeComments', function (req, res) {
-  res.end(JSON.stringify(glutenFree.getComments()));
-});
-
-app.get('/getSandwichLineComments', function (req, res) {
-  res.end(JSON.stringify(sandwichLine.getComments()));
-});
-
-app.get('/getWraplineComments', function (req, res) {
-  res.end(JSON.stringify(wrapLine.getComments()));
-});
 
 /* ADD COMMENTS */
 

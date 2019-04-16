@@ -7,6 +7,7 @@ function cafeteria(lineName){
   this.name = lineName,
   this.votes = [],
   this.comments = [],
+  this.score = 0,
   this.getScore = function(){
     if (this.votes.length == 0){
       return 0;
@@ -20,6 +21,7 @@ function cafeteria(lineName){
   },
   this.vote = function(usrVote){
     this.votes.push(usrVote);
+    this.score = this.getScore();
   },
   this.addComment = function(comment){
     this.comments.push(comment);

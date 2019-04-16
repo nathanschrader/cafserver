@@ -45,12 +45,7 @@ var wrapLine = new cafeteria("wrapLine");
 /* GET DATA */
 
 app.get('/getData', function (req, res) {
-  var lines = [];
-  lines.push(mainLine);
-  lines.push(chefLine);
-  lines.push(glutenFree);
-  lines.push(sandwichLine);
-  lines.push(wrapLine);
+  var lines = [mainLine, chefLine, glutenFree, sandwichLine, wrapLine];
 
   res.end(JSON.stringify(lines));
 });
@@ -107,22 +102,22 @@ app.post("/setMainLineScore/:vote", function(req, res){
 });
 
 app.post("/setChefLineScore/:vote", function(req, res){
-  mainLine.vote(parseInt(req.params.vote));
+  chefLine.vote(parseInt(req.params.vote));
   res.sendStatus(200);
 });
 
 app.post("/setGlutenFreeScore/:vote", function(req, res){
-  mainLine.vote(parseInt(req.params.vote));
+  glutenFree.vote(parseInt(req.params.vote));
   res.sendStatus(200);
 });
 
 app.post("/setSandwichLineScore/:vote", function(req, res){
-  mainLine.vote(parseInt(req.params.vote));
+  sandwichLine.vote(parseInt(req.params.vote));
   res.sendStatus(200);
 });
 
 app.post("/setWrapLineScore/:vote", function(req, res){
-  mainLine.vote(parseInt(req.params.vote));
+  wrapLine.vote(parseInt(req.params.vote));
   res.sendStatus(200);
 });
 
@@ -159,7 +154,7 @@ app.post("/addWrapLineComment/:comment", function(req, res){
 
 
 
-app.listen(3000, function () {
-  console.log('listening on port 3000!');
+app.listen(80, function () {
+  console.log('listening on port 80!');
 });
 

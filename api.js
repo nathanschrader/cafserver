@@ -41,13 +41,14 @@ var chefLine = new cafeteria("chefLine");
 var glutenFree = new cafeteria("glutenFree");
 var sandwichLine = new cafeteria("sandwichLine");
 var wrapLine = new cafeteria("wrapLine");
+var overallCaf = new cafeteria("overallCaf");
 
 /* API URLS */
 
 /* GET DATA */
 
 app.get('/getData', function (req, res) {
-  var lines = [mainLine, chefLine, glutenFree, sandwichLine, wrapLine];
+  var lines = [mainLine, chefLine, glutenFree, sandwichLine, wrapLine, overallCaf];
 
   res.end(JSON.stringify(lines));
 });
@@ -123,6 +124,11 @@ app.post("/setWrapLineScore/:vote", function(req, res){
   res.sendStatus(200);
 });
 
+app.post("/setOverallCafScore/:vote", function(req, res){
+  overallCaf.vote(parseInt(req.params.vote));
+  res.sendStatus(200);
+});
+
 
 /* ADD COMMENTS */
 
@@ -148,6 +154,11 @@ app.post("/addSandwichLineComment/:comment", function(req, res){
 
 app.post("/addWrapLineComment/:comment", function(req, res){
   wrapLine.addComment(req.params.comment);
+  res.sendStatus(200);
+});
+
+app.post("/addOverallCafComment/:comment", function(req, res){
+  overallCaf.addComment(req.params.comment);
   res.sendStatus(200);
 });
 
